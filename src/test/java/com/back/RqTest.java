@@ -69,7 +69,7 @@ public class RqTest {
 
         Rq rq = new Rq("등록?고향=서울&이름=홍길동");
 
-        String paramValue = rq.getParam("고향", "" ); // 이름 가져오라했는데 없을때의 처리
+        String paramValue = rq.getParam("고향", "" );
 
         assertThat(paramValue).isEqualTo("서울");
     }
@@ -82,8 +82,32 @@ public class RqTest {
 
         Rq rq = new Rq("등록?고향=서울&이름=홍길동");
 
-        String paramValue = rq.getParam("이름", "" ); // 이름 가져오라했는데 없을때의 처리
+        String paramValue = rq.getParam("이름", "" );
 
         assertThat(paramValue).isEqualTo("홍길동");
+    }
+
+    //파라미터 3개 -> 코드 수정하지 않아도 성공함. 성공한다고 해서 테스트케이스 삭제x
+    @Test
+    @DisplayName("입력값 : \"등록?고향=서울&이름=홍길동&성별=남자\" : getParam(\"이름\"): 홍길동")
+    void t8() {
+
+        Rq rq = new Rq("등록?고향=서울&이름=홍길동&성별=남자");
+
+        String paramValue = rq.getParam("이름", "" );
+
+        assertThat(paramValue).isEqualTo("홍길동");
+    }
+
+    //파라미터 3개 -> 코드 수정하지 않아도 성공함. 성공한다고 해서 테스트케이스 삭제x
+    @Test
+    @DisplayName("입력값 : \"등록?고향=서울&이름=홍길동&성별=남자\" : getParam(\"성별\"): 남자")
+    void t9() {
+
+        Rq rq = new Rq("등록?고향=서울&이름=홍길동&성별=남자");
+
+        String paramValue = rq.getParam("성별", "" );
+
+        assertThat(paramValue).isEqualTo("남자");
     }
 }
