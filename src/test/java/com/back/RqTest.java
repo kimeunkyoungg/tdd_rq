@@ -62,7 +62,7 @@ public class RqTest {
         assertThat(paramValue).isEqualTo("");
     }
 
-    //파라미터 두개
+    //파라미터 두개 -고향
     @Test
     @DisplayName("입력값 : \"등록?고향=서울&이름=홍길동\" : getParam(\"고향\"): 서울")
     void t6() {
@@ -74,4 +74,16 @@ public class RqTest {
         assertThat(paramValue).isEqualTo("서울");
     }
 
+
+    //파라미터 두개 - 이름
+    @Test
+    @DisplayName("입력값 : \"등록?고향=서울&이름=홍길동\" : getParam(\"이름\"): 홍길동")
+    void t7() {
+
+        Rq rq = new Rq("등록?고향=서울&이름=홍길동");
+
+        String paramValue = rq.getParam("이름", "" ); // 이름 가져오라했는데 없을때의 처리
+
+        assertThat(paramValue).isEqualTo("홍길동");
+    }
 }
