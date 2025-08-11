@@ -58,8 +58,13 @@ public class Rq {
         if (value.isBlank()) {
             return defaultValue;
         }
+        try{
+            return Integer.parseInt(value);
+        }catch (NumberFormatException e){
+            return defaultValue;
+        }
 
-        return Integer.parseInt(value);
+
     }
 
 }

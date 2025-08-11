@@ -123,4 +123,16 @@ public class RqTest {
 
         assertThat(paramValue).isEqualTo(1);
     }
+
+    //2번이라는 문자가 들어갈때 -> defaultValue가 나와야함
+    @Test
+    @DisplayName("입력값 : \"목록?page=2번\" : getParam(\"page\"): 2")
+    void t11() {
+
+        Rq rq = new Rq("목록?page=2번");
+
+        int paramValue = rq.getParamAsInt("page", -1 );
+
+        assertThat(paramValue).isEqualTo(-1);
+    }
 }
